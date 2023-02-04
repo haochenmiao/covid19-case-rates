@@ -43,8 +43,8 @@
             // when loading a geojson, there are two steps
             // add a source of the data and then add the layer out of the source
             map.addSource('us-covid-2020-counts', {
-                type: 'json',
-                data: '/Assets/us-covid-2020-counts.json'
+                type: 'geojson',
+                data: '/Assets/us-covid-2020-counts.geojson'
             });
             map.addLayer({
                 'id': 'us-covid-2020-counts-point',
