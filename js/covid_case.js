@@ -3,9 +3,9 @@ mapboxgl.accessToken =
 let map = new mapboxgl.Map({
     container: 'map', // container ID
     style: 'mapbox://styles/mapbox/dark-v10',
-    zoom: 5, // starting zoom
+    zoom: 4, // starting zoom
     minZoom: 4, // minimum zoom level of the map
-    center: [138, 38] // starting center
+    center: [-98.58, 39.83] // starting center
 });
 const grades = [4, 5, 6],
     colors = ['rgb(208,209,230)', 'rgb(103,169,207)', 'rgb(1,108,89)'],
@@ -16,8 +16,8 @@ map.on('load', () => { //simplifying the function statement: arrow with brackets
     // when loading a geojson, there are two steps
     // add a source of the data and then add the layer out of the source
     map.addSource('us-covid-2020-counts', {
-        type: 'json',
-        data: 'assets/us-covid-2020-counts.json'
+        type: 'geojson',
+        data: 'assets/us-covid-2020-counts.geojson'
     });
     map.addLayer({
             'id': 'us-covid-2020-counts-point',
