@@ -110,34 +110,30 @@
             let state_data = await response.json();
 
             map.on('load', function loadingData() {
-                map.addSource('state_data', {
+                map.addSource('us-covid-2020-rates', {
                     type: 'geojson',
                     data: state_data
                 });
 
                 map.addLayer({
-                    'id': 'state_data_layer',
+                    'id': 'us-covid-2020-rates-layer',
                     'type': 'fill',
-                    'source': 'state_data',
+                    'source': 'us-covid-2020-rates',
                     'paint': {
                         'fill-color': [
                             'step',
-                            ['get', 'density'],
+                            ['get', 'rates'],
                             '#FFEDA0',   // stop_output_0
-                            10,          // stop_input_0
+                            20,          // stop_input_0
                             '#FED976',   // stop_output_1
-                            20,          // stop_input_1
+                            40,          // stop_input_1
                             '#FEB24C',   // stop_output_2
-                            50,          // stop_input_2
+                            60,          // stop_input_2
                             '#FD8D3C',   // stop_output_3
-                            100,         // stop_input_3
+                            80,         // stop_input_3
                             '#FC4E2A',   // stop_output_4
-                            200,         // stop_input_4
-                            '#E31A1C',   // stop_output_5
-                            500,         // stop_input_5
-                            '#BD0026',   // stop_output_6
-                            1000,        // stop_input_6
-                            "#800026"    // stop_output_7
+                            100,         // stop_input_4
+                            "#E31A1C"   // stop_output_5
                         ],
                         'fill-outline-color': '#BBBBBB',
                         'fill-opacity': 0.7,
@@ -145,14 +141,12 @@
                 });
 
                 const layers = [
-                    '0-9',
-                    '10-19',
-                    '20-49',
-                    '50-99',
-                    '100-199',
-                    '200-499',
-                    '500-999',
-                    '1000 and more'
+                    '0-19',
+                    '20-39',
+                    '40-59',
+                    '60-79',
+                    '80-99',
+                    '100'
                 ];
                 const colors = [
                     '#FFEDA070',
@@ -160,14 +154,12 @@
                     '#FEB24C70',
                     '#FD8D3C70',
                     '#FC4E2A70',
-                    '#E31A1C70',
-                    '#BD002670',
-                    '#80002670'
+                    '#E31A1C70'
                 ];
 
                 // create legend
                 const legend = document.getElementById('legend');
-                legend.innerHTML = "<b>Population Density<br>(people/sq.mi.)</b><br><br>";
+                legend.innerHTML = "<b>COVID rates<br>(rates/county)</b><br><br>";
 
 
                 layers.forEach((layer, i) => {
@@ -187,11 +179,11 @@
 
             map.on('mousemove', ({point}) => {
                 const state = map.queryRenderedFeatures(point, {
-                    layers: ['state_data_layer']
+                    layers: ['covid-2020-rates-layer']
                 });
                 document.getElementById('text-description').innerHTML = state.length ?
-                    `<h3>${state[0].properties.name}</h3><p><strong><em>${state[0].properties.density}</strong> people per square mile</em></p>` :
-                    `<p>Hover over a state!</p>`;
+                    `<h3>${state[0].properties.county}</h3><p><strong><em>${state[0].properties.rates}</strong> rates of death per county </em></p>` :
+                    `<p>Hover over COVID!</p>`;
             });
         }
 

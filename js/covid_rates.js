@@ -3,7 +3,7 @@ mapboxgl.accessToken =
 let map = new mapboxgl.Map({
     container: 'map', // container ID
     style: 'mapbox://styles/mapbox/dark-v10',
-    zoom: 4, // starting zoom
+    zoom: 4.5, // starting zoom
     minZoom: 4, // minimum zoom level of the map
     center: [138, 38] // starting center
 });
@@ -20,7 +20,7 @@ map.on('load', () => { //simplifying the function statement: arrow with brackets
         data: 'assets/us-covid-2020-rates.geojson'
     });
     map.addLayer({
-            'id': 'us-covid-2020-rates-point',
+            'id': 'us-covid-2020-rates-layer',
             'type': 'circle',
             'source': 'us-covid-2020-rates',
             'paint': {
@@ -48,7 +48,7 @@ map.on('load', () => { //simplifying the function statement: arrow with brackets
         }
     );
     // click on tree to view magnitude in a popup
-    map.on('click', 'us-covid-2020-rates-point', (event) => {
+    map.on('click', 'us-covid-2020-rates-layer', (event) => {
         new mapboxgl.Popup()
             .setLngLat(event.features[0].geometry.coordinates)
             .setHTML(`<strong>Magnitude:</strong> ${event.features[0].properties.mag}`)
