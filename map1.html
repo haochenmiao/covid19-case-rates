@@ -123,17 +123,17 @@
                         'fill-color': [
                             'step',
                             ['get', 'rates'],
-                            '#FFEDA0',   // stop_output_0
+                            '#eff3ff',   // stop_output_0
                             20,          // stop_input_0
-                            '#FED976',   // stop_output_1
+                            '#c6dbef',   // stop_output_1
                             40,          // stop_input_1
-                            '#FEB24C',   // stop_output_2
+                            '#9ecae1',   // stop_output_2
                             60,          // stop_input_2
-                            '#FD8D3C',   // stop_output_3
+                            '#6baed6',   // stop_output_3
                             80,         // stop_input_3
-                            '#FC4E2A',   // stop_output_4
+                            '#3182bd',   // stop_output_4
                             100,         // stop_input_4
-                            "#E31A1C"   // stop_output_5
+                            "#08519c"   // stop_output_5
                         ],
                         'fill-outline-color': '#BBBBBB',
                         'fill-opacity': 0.7,
@@ -146,20 +146,20 @@
                     '40-59',
                     '60-79',
                     '80-99',
-                    '100'
+                    '100 and more'
                 ];
                 const colors = [
-                    '#FFEDA070',
-                    '#FED97670',
-                    '#FEB24C70',
-                    '#FD8D3C70',
-                    '#FC4E2A70',
-                    '#E31A1C70'
+                    '#eff3ff',
+                    '#c6dbef',
+                    '#9ecae1',
+                    '#6baed6',
+                    '#3182bd',
+                    '#08519c'
                 ];
 
                 // create legend
                 const legend = document.getElementById('legend');
-                legend.innerHTML = "<b>COVID rates<br>(rates/county)</b><br><br>";
+                legend.innerHTML = "<b>people with COVID rates<br>(rates/county)</b><br><br>";
 
 
                 layers.forEach((layer, i) => {
@@ -179,10 +179,10 @@
 
             map.on('mousemove', ({point}) => {
                 const state = map.queryRenderedFeatures(point, {
-                    layers: ['covid-2020-rates-layer']
+                    layers: ['us-covid-2020-rates-layer']
                 });
                 document.getElementById('text-description').innerHTML = state.length ?
-                    `<h3>${state[0].properties.county}</h3><p><strong><em>${state[0].properties.rates}</strong> rates of death per county </em></p>` :
+                    `<h3>${state[0].properties.county}</h3><p><strong><em>${state[0].properties.rates}</strong>% per county </em></p>` :
                     `<p>Hover over COVID!</p>`;
             });
         }
