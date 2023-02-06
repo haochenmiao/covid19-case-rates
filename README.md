@@ -14,7 +14,7 @@
 #### This is the image of what the map2 looks like
 ![map2](https://github.com/haochenmiao/covid19-case-rates/blob/main/img/map2.png)
 
-#### The data sources I use is from [the United States Census Bureau](https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html), where I collected the shapefile of the boundaries of the counties, and thanks to the help of my awesome classmates we are able to debug some of the issues in the html, css and javascript code to make this project appealing to the users
+#### The data sources I use is from [the different United States Census Bureau](https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html), where I collected the shapefile of the boundaries of the counties, and thanks to the help of my awesome classmates we are able to debug some of the issues in the html, css and javascript code to make this project appealing to the users
 
 
 
